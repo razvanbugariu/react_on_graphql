@@ -1,0 +1,24 @@
+type Query {
+    getHouses: [House]
+    getHouseById(id: ID!): House
+    getStreets: [Street]
+    countStreets: Int
+    countHouses: Int
+}
+
+type Mutation {
+    saveHouse(number: Int, familyName: String): House!
+}
+
+type House {
+    id: ID!
+    number: Int
+    familyName: String
+}
+
+type Street {
+    id: ID!
+    streetName: String
+    townName: String
+    houses: [House]
+}
