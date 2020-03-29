@@ -1,7 +1,5 @@
 package rbu.demo.graphql.entities;
 
-import rbu.demo.graphql.entities.House;
-
 import javax.persistence.*;
 import java.util.List;
 
