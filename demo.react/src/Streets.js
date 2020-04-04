@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 
 import ApolloClient from "apollo-boost";
+import { List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
 import gql from "graphql-tag";
 
 const client = new ApolloClient({uri: 'http://localhost:8080/graphql'});
@@ -9,13 +11,8 @@ const GET_STREETS = gql`
 	      {
 	        getStreets {
 			    id
-			    townName	
+			    townName
 			    streetName
-			    houses{
-			      id
-			      familyName
-			      number
-			    }
 		  	}
 	      }
 	    `
@@ -27,28 +24,28 @@ function getStreets() {
 	  });
 	}
 
-function SingleStreet(props) {
-	return <div>City: {props.townName} Name: {props.streetName} Number: {props.streetId}</div>
-}
-
 class Streets extends Component {
 
 	constructor() {
 		super();
-		this.state = {streets: 'No Streets Yet. Please reaload page.'};
+			this.state = {streets: []};
 	}
 
 	componentDidMount() {
-		getStreets().then(result => {
-			const listStreetName = result.data.getStreets
-			.map(street => <li><SingleStreet townName={street.townName} streetName={street.streetName} streetId={street.id}/></li>)
-			this.setState({streets: <ul> {listStreetName} </ul>})
-		})
+
+		getStreets().then( (result) => this.setState({streets: result.data.getStreets}))
 	}
 
 	render() {
 		return (
-			<div>{this.state.streets}</div>
+			<List>
+				{this.state.streets.map( (street) => <ListItem key={street.id}>
+						<ListItemIcon>
+			       <HomeIcon />
+			     </ListItemIcon>
+					<ListItemText> {street.streetName}, {street.townName} </ListItemText>
+				</ListItem>)}
+			</List>
 		);
 	}
 }

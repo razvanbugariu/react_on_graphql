@@ -1,25 +1,27 @@
 package rbu.demo.graphql.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class House {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "house_id")
     private Long id;
     private int number;
     private String familyName;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "street_id")
+    private Street street;
 
     public House() {
     }
 
-    public House(int number, String familyName) {
+    public House(int number, String familyName, Street street) {
         this.number = number;
         this.familyName = familyName;
+        this.street = street;
     }
 
     public Long getId() {
@@ -32,5 +34,9 @@ public class House {
 
     public String getFamilyName() {
         return familyName;
+    }
+
+    public Street getStreet() {
+        return street;
     }
 }

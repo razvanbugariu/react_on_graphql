@@ -7,18 +7,18 @@ type Query {
 }
 
 type Mutation {
-    saveHouse(number: Int, familyName: String): House!
+    saveHouse(number: Int, familyName: String, streetId: Int): House!
 }
 
 type House {
     id: ID!
     number: Int
     familyName: String
+    street: Street!
 }
 
 type Street {
     id: ID!
     streetName: String
     townName: String
-    houses: [House]
 }

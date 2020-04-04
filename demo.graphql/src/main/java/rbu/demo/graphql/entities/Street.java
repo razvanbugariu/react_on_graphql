@@ -1,30 +1,23 @@
 package rbu.demo.graphql.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Street {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "street_id")
     private Long id;
     private String streetName;
     private String townName;
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<House> houses;
 
     public Street() {
     }
 
-    public Street(String streetName, String townName, List<House> houses) {
+    public Street(String streetName, String townName) {
         this.streetName = streetName;
         this.townName = townName;
-        this.houses = houses;
-    }
-
-    public List<House> getHouses() {
-        return houses;
     }
 
     public String getStreetName() {
