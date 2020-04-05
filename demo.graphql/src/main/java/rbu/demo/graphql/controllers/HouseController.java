@@ -1,6 +1,7 @@
 package rbu.demo.graphql.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import rbu.demo.graphql.repositories.HouseRepository;
 
 import java.util.List;
 
+//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 public class HouseController {
 

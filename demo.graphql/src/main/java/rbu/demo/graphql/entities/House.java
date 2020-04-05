@@ -9,6 +9,7 @@ public class House {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "house_id")
     private Long id;
+    @Column(unique = true)
     private int number;
     private String familyName;
     @ManyToOne(optional = false)

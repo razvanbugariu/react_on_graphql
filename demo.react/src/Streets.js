@@ -2,7 +2,7 @@ import React, {Component} from "react";
 
 import ApolloClient from "apollo-boost";
 import { List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
 import gql from "graphql-tag";
 
 const client = new ApolloClient({uri: 'http://localhost:8080/graphql'});
@@ -32,7 +32,6 @@ class Streets extends Component {
 	}
 
 	componentDidMount() {
-
 		getStreets().then( (result) => this.setState({streets: result.data.getStreets}))
 	}
 
@@ -41,9 +40,9 @@ class Streets extends Component {
 			<List>
 				{this.state.streets.map( (street) => <ListItem key={street.id}>
 						<ListItemIcon>
-			       <HomeIcon />
+			       <LocationCityIcon />
 			     </ListItemIcon>
-					<ListItemText> {street.streetName}, {street.townName} </ListItemText>
+					<ListItemText> {street.streetName} Street, {street.townName} </ListItemText>
 				</ListItem>)}
 			</List>
 		);

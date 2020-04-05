@@ -9,6 +9,8 @@ public class Street {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "street_id")
     private Long id;
+
+    @Column(unique = true)
     private String streetName;
     private String townName;
 
