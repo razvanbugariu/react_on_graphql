@@ -63,7 +63,6 @@ class AddHome extends Component {
 						streets: [],
 						selectedStreet:'',
 						hideError:true,
-						isAuthenticated:true,
 						errorMessage:''};
 
 		if(localStorage.getItem('authorizationHeader') === null) {
@@ -72,8 +71,7 @@ class AddHome extends Component {
 							streets: [],
 							selectedStreet:'',
 							hideError:false,
-							isAuthenticated:false,
-							errorMessage:'You are not authenticated!'}			
+							errorMessage:'Please authenticate before any action.'}			
 		}	
 
 		// This binding is necessary to make `this` work in the callback
@@ -84,7 +82,7 @@ class AddHome extends Component {
 	}
 
 	componentDidMount() {
-		if(this.state.isAuthenticated) {
+		if(localStorage.getItem('authorizationHeader') != null) {
 			getStreets().then( result => {console.log(result.data.getStreets); this.setState({streets: result.data.getStreets}) });
 		}
 	}
@@ -123,7 +121,7 @@ class AddHome extends Component {
 					</Select>
 					<FormHelperText id="my-helper-text" color="secondary">Select street.</FormHelperText>
 
-					<Button variant="contained" color="primary" disableElevation onClick={this.handleSubmit}> Save house</Button>
+					<Button disabled={!this.state.hideError} variant="contained" color="primary" disableElevation onClick={this.handleSubmit}> Save house</Button>
 				</FormControl>
 				<h1 hidden={this.state.hideError}>{this.state.errorMessage}</h1>
 			</div>

@@ -7,6 +7,7 @@ import AddHome from "./AddHome";
 import Houses from "./Houses";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import Logout from "./Logout";
 
 class Main extends Component {
 
@@ -19,18 +20,20 @@ class Main extends Component {
 						<li><NavLink to="/">Home</NavLink></li>
 			            <li><NavLink to="/streets">Streets</NavLink></li>
 			            <li><NavLink to="/contact">Contact</NavLink></li>
-									<li><NavLink to="/addHome">AddHome</NavLink></li>
-									<li><NavLink to="/houses">Houses</NavLink></li>
-									<li><NavLink to="/login">Login</NavLink></li>
+						<li><NavLink to="/addHome">AddHome</NavLink></li>
+						<li><NavLink to="/houses">Houses</NavLink></li>
+						<li><NavLink to="/login">Login</NavLink></li>
+						<li><NavLink to="/"><Logout /></NavLink></li>
 					</ul>
 					<div className="content">
 			            <Route exact path="/" component={Home}/>
 			            <Route path="/streets" component={Streets}/>
 			            <Route path="/contact" component={Contact}/>
-									<Route path="/addHome" component={AddHome}/>
-									<Route path="/houses" component={Houses}/>
-									<Route path="/login" component={Login}/>
-									<Route path="/sign-up" component={SignUp}/>
+						<Route path="/addHome" component={AddHome}/>
+						<Route path="/houses" component={Houses}/>
+						<Route path="/login" component={Login}/>
+						<Route path="/sign-up" component={SignUp}/>
+						<Route path="/logout" component={Logout}/>
 			         </div>
 				</div>
 			</HashRouter>

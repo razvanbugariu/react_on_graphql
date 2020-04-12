@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-
 import ApolloClient from "apollo-boost";
 import { List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
@@ -38,15 +37,15 @@ class Streets extends Component {
 
 	constructor() {
 		super();
-		this.state = {streets: [], isAuthenticated: true, errorMessage:""};
+		this.state = {streets: [], errorMessage:"", hideError:true};
 		if(localStorage.getItem('authorizationHeader') === null) {
-			this.state = {streets: [], isAuthenticated: false, errorMessage:"You are not authenticated!"};
+			this.state = {streets: [], errorMessage:"Please authenticate before any action.", hideError:false};
 		}
 	}
 
 	componentDidMount() {
-		if(this.state.isAuthenticated) {
-			getStreets().then( (result) => this.setState({streets: result.data.getStreets}))
+		if(localStorage.getItem('authorizationHeader') != null) {
+			getStreets().then( (result) => this.setState({streets: result.data.getStreets})).catch(error => this.setState({hideError: false, errorMessage:"Something went wrong, try again later!"}))
 		}
 	}
 
@@ -61,7 +60,7 @@ class Streets extends Component {
 						<ListItemText> {street.streetName} Street, {street.townName} </ListItemText>
 					</ListItem>)}
 				</List>
-				<h1 hidden={this.state.isAuthenticated}>{this.state.errorMessage}</h1>
+				<h1 hidden={this.state.hideError}>{this.state.errorMessage}</h1>
 			</div>
 		);
 	}

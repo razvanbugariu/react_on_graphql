@@ -1,20 +1,9 @@
 import React, {Component} from "react";
 import { Button, Input, FormControl, Link } from '@material-ui/core';
+import {authenticationService} from './AuthenticationService'
 
 function login(username, password) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    };
-
-    return fetch(`http://localhost:8080/login`, requestOptions)
-        .then(response => {
-            console.log(response);
-            localStorage.setItem("currentUsername", username);
-            localStorage.setItem("authorizationHeader", response.headers.get('authorization'));
-            window.location.href='/#/contact'
-        });
+    authenticationService.login(username, password);
 }
 
 class Login extends Component {
@@ -50,12 +39,12 @@ class Login extends Component {
 
         <Input placeholder="Password" type="password" id="login-password" aria-describedby="my-helper-text" onChange={this.handlePasswordChange} value={this.state.password}/>
 				<Button variant="contained" color="primary" disableElevation onClick={this.handleSubmit}> Login </Button>
-					<Link
-				    color="textPrimary"
-				    href="/#/sign-up"
-				    aria-current="page">
-				    Click here to registrate !!!
-					</Link>
+        <Link
+          color="textPrimary"
+          href="/#/sign-up"
+          aria-current="page">
+          Click here to sign-up !!!
+        </Link>
 	  </FormControl>
     );
 	}
