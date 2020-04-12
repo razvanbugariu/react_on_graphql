@@ -5,6 +5,8 @@ import Streets from "./Streets";
 import Contact from "./Contact";
 import AddHome from "./AddHome";
 import Houses from "./Houses";
+import Login from "./Login";
+import SignUp from "./SignUp";
 
 class Main extends Component {
 
@@ -19,6 +21,7 @@ class Main extends Component {
 			            <li><NavLink to="/contact">Contact</NavLink></li>
 									<li><NavLink to="/addHome">AddHome</NavLink></li>
 									<li><NavLink to="/houses">Houses</NavLink></li>
+									<li><NavLink to="/login">Login</NavLink></li>
 					</ul>
 					<div className="content">
 			            <Route exact path="/" component={Home}/>
@@ -26,6 +29,8 @@ class Main extends Component {
 			            <Route path="/contact" component={Contact}/>
 									<Route path="/addHome" component={AddHome}/>
 									<Route path="/houses" component={Houses}/>
+									<Route path="/login" component={Login}/>
+									<Route path="/sign-up" component={SignUp}/>
 			         </div>
 				</div>
 			</HashRouter>

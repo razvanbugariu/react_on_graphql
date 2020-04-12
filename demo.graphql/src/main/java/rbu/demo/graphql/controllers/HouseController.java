@@ -10,7 +10,6 @@ import rbu.demo.graphql.repositories.HouseRepository;
 
 import java.util.List;
 
-//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 public class HouseController {
 
